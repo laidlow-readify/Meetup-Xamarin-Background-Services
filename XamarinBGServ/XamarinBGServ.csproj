@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="BGServDatabase.cs" />
     <Compile Include="Messages.cs" />
+    <Compile Include="IPeriodicTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

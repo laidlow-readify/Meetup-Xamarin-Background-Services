@@ -18,10 +18,7 @@ namespace XamarinBGServ.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
             LoadApplication(new App()); 
-            MessagingCenter.Send<XamarinBGServ.App, string>(Xamarin.Forms.Application.Current as XamarinBGServ.App,
-                                                 Messages.ConsoleMessage, $"Background fetch enabled");
             return base.FinishedLaunching(app, options);
         }
 

@@ -9,7 +9,8 @@
         Orientation="Vertical"
         HorizontalOptions="StartAndExpand"
         VerticalOptions="StartAndExpand">
-        
+
+        <Button Text="{Binding ButtonText}" Command="{Binding StartStopServiceCommand}" />
         <Button Text="Refresh console" Command="{Binding RefreshConsoleCommand}"/>
 
         <ListView ItemsSource="{Binding LoggerListItems}" 

@@ -13,6 +13,7 @@ namespace XamarinBGServ.PageModels
         public string Title { get; set; }
         public ObservableCollection<LoggerItem> LoggerListItems { get; set; }
         public Command RefreshConsoleCommand { get; set; }
+        public Command StartStopServiceCommand { get; set; }
         public string ButtonText { get; set; }
         public bool ServiceStarted { get; set; }
 
@@ -22,6 +23,7 @@ namespace XamarinBGServ.PageModels
             Title = "Xamarin Background Services";
             ButtonText = "Start background service";
             RefreshConsoleCommand = new Command(RefreshConsole);
+            StartStopServiceCommand = new Command(StartStopService);
             LoggerListItems = new ObservableCollection<LoggerItem>();
             SubscribeToMessages();
         }
@@ -38,6 +40,23 @@ namespace XamarinBGServ.PageModels
             {
                 AddLineToConsole(message);
             });
+        }
+
+        private void StartStopService()
+        {
+            ServiceStarted = !ServiceStarted;
+            ButtonText = ServiceStarted ? "Stop background service" : "Start background service";
+            RaisePropertyChanged(nameof(ButtonText));
+
+            var periodicTask = DependencyService.Get<IPeriodicTask>();
+            if (ServiceStarted)
+            {
+                periodicTask.SchedulePeriodicWork();
+            }
+            else
+            {
+                periodicTask.CancelScheduledWork();
+            }
         }
 
         private void RefreshConsole()
