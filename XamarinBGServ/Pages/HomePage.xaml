@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="XamarinBGServ.Pages.HomePage"
+    Title="{Binding Title}">
+    
+    <StackLayout
+        Orientation="Vertical"
+        HorizontalOptions="StartAndExpand"
+        VerticalOptions="StartAndExpand">
+        
+        <Button Text="Refresh console" Command="{Binding RefreshConsoleCommand}"/>
+
+        <ListView ItemsSource="{Binding LoggerListItems}" 
+            HasUnevenRows="true"
+            SeparatorVisibility="None"
+            BackgroundColor="Black">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="4,2">
+                            <Label Text="{Binding ConsoleOutput}" 
+                                FontSize="14"
+                                TextColor="White"
+                                LineBreakMode="WordWrap"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+
+
+    
+</ContentPage>
